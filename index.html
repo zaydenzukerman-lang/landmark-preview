@@ -197,6 +197,33 @@ h1,h2,h3{font-family:var(--display);font-weight:800;text-transform:uppercase;lin
 .card .nav2{display:flex;justify-content:space-between;margin-top:24px;gap:10px}
 .card .nav2 button{padding:11px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.3);font-size:13px;font-weight:700}
 .card .nav2 button:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ---- clickability cues ---- */
+.hit{position:absolute;border-radius:40px;cursor:pointer;z-index:1}
+.sky[data-level="1"] .con.focus .hit,.sky[data-level="2"] .hit{pointer-events:none}
+.world svg.lines line.hot{opacity:1!important;stroke:var(--gold-soft)}
+.con.hot .con-lbl b{color:var(--gold-soft)}
+.con.hot .star.pro .dot{box-shadow:0 0 0 6px rgba(242,196,90,.3),0 0 30px 10px rgba(242,196,90,.9),0 0 80px 20px rgba(242,196,90,.45)}
+.con-lbl em{display:inline-block;margin-top:10px;padding:6px 14px;border-radius:999px;background:var(--gold);color:var(--ink);font-style:normal;font-size:12px;font-weight:700;letter-spacing:.08em;box-shadow:0 4px 18px rgba(242,196,90,.5);transition:transform .2s}
+.con.hot .con-lbl em{transform:scale(1.08)}
+.coach{position:absolute;z-index:1;pointer-events:none;transition:opacity .5s}
+.coach .ring2{position:absolute;inset:0;border-radius:50%;border:2px dashed rgba(255,227,161,.8);animation:spin 18s linear infinite}
+.coach .ring2:after{content:"";position:absolute;inset:-14px;border-radius:50%;border:2px solid rgba(242,196,90,.5);animation:ping 2s ease-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes ping{0%{opacity:.9;transform:scale(.9)}100%{opacity:0;transform:scale(1.15)}}
+.coach .tag{position:absolute;left:50%;top:-8px;white-space:nowrap;background:#fff;color:var(--ink);font-weight:700;font-size:14px;padding:9px 16px;border-radius:999px;box-shadow:0 8px 30px rgba(0,0,0,.3);
+  transform:translate(-50%,-100%) scale(calc(1 / var(--z)));transform-origin:50% 100%;animation:bob 1.6s ease-in-out infinite}
+.coach .tag:after{content:"";position:absolute;left:50%;bottom:-6px;margin-left:-6px;border:6px solid transparent;border-bottom:0;border-top-color:#fff}
+@keyframes bob{50%{margin-top:-8px}}
+.sky.used .coach,.sky[data-level="1"] .coach,.sky[data-level="2"] .coach{opacity:0}
+.star .lbl{pointer-events:none}
+.sky[data-level="1"] .con.focus .star.pro .lbl{pointer-events:auto;cursor:pointer}
+.star .lbl i{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:999px;background:var(--gold);color:var(--ink);font-style:normal;font-size:11px;font-weight:700;letter-spacing:.06em;vertical-align:1px}
+.star.pro:hover .lbl i{background:#fff}
+.sky[data-level="1"] .con.focus .star.pro.lit .ring{animation-duration:1.6s}
+.tip{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:10px 16px;border-radius:999px;background:rgba(242,196,90,.16);border:1px solid rgba(242,196,90,.55);color:var(--gold-soft);font-size:14px;font-weight:700}
+.tip b{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px 3px rgba(242,196,90,.8);animation:tw 1.4s ease-in-out infinite}
+.sky-head .tip{margin-top:14px}
 @media (max-width:900px){
   .card{left:16px;right:16px;width:auto;top:auto;bottom:16px;transform:translateY(30px);max-height:52%;background:rgba(29,16,70,.88);backdrop-filter:blur(10px);padding:20px;border-radius:18px}
   .card.open{transform:none}.card h3{font-size:40px}
@@ -364,10 +391,10 @@ footer .fine{margin-top:50px;padding-top:24px;border-top:1px solid rgba(255,255,
   <div class="sky-head">
     <div class="eyebrow">Our Sky · 1980 → today</div>
     <h2>Every star is a landmark.</h2>
-    <p>Six real constellations, one for each world we build. Click a constellation to fly in, then click a star to look inside.</p>
+    <p>Six real constellations, one for each world we build. Every gold star is a real Landmark project.</p><div class="tip"><b></b>Click any constellation to fly in</div>
   </div>
   <div class="year" aria-live="polite"><b id="yr">1980</b><span id="yrl">Landmark is founded</span></div>
-  <div class="why" id="why"><div class="eyebrow" id="whyE"></div><h3 id="whyH"></h3><p id="whyP"></p></div>
+  <div class="why" id="why"><div class="eyebrow" id="whyE"></div><h3 id="whyH"></h3><p id="whyP"></p><div class="tip"><b></b>Tap a gold star to look inside</div></div>
   <div class="crumb" id="crumb"></div>
   <div class="chips" id="chips"></div>
   <button class="back" id="back">← <span id="backT">Back to the sky</span></button>
@@ -550,14 +577,25 @@ CONS.forEach(function(c){
   c.stars.forEach(function(s,i){
     var p=c.pro.filter(function(q){return q.s===i})[0];
     var st=document.createElement('div');st.className='star '+(p?'pro':'filler');st.style.left=s[0]+'px';st.style.top=s[1]+'px';
-    if(p){st.innerHTML='<button aria-label="'+p.name+(p.year?', '+p.year:'')+'"></button><span class="ring"></span><span class="dot"></span><span class="lbl">'+p.name+'<small>'+(p.year||p.where)+'</small></span>';
-      st.querySelector('button').addEventListener('click',function(e){e.stopPropagation();openStar(p);});p.el=st;}
+    if(p){st.innerHTML='<button aria-label="'+p.name+(p.year?', '+p.year:'')+'"></button><span class="ring"></span><span class="dot"></span><span class="lbl">'+p.name+'<i>View ›</i><small>'+(p.year||p.where)+'</small></span>';
+      st.querySelector('button').addEventListener('click',function(e){e.stopPropagation();openStar(p);});
+      st.querySelector('.lbl').addEventListener('click',function(e){e.stopPropagation();openStar(p);});p.el=st;}
     else st.innerHTML='<span class="dot"></span>';
     g.appendChild(st);
   });
   var lb=document.createElement('div');lb.className='con-lbl';lb.style.left=c.lbl[0]+'px';lb.style.top=c.lbl[1]+'px';
-  lb.innerHTML='<b>'+c.name+'</b><span>'+c.disc+'</span>';lb.addEventListener('click',function(e){e.stopPropagation();openCon(c);});
-  g.appendChild(lb);world.appendChild(g);
+  lb.innerHTML='<b>'+c.name+'</b><span>'+c.disc+'</span><em>Explore ›</em>';lb.addEventListener('click',function(e){e.stopPropagation();openCon(c);});
+  g.appendChild(lb);
+  var xs=c.stars.map(function(q){return q[0]}),ys=c.stars.map(function(q){return q[1]}).concat([c.lbl[1]+50]),pad=36;
+  var hb=document.createElement('div');hb.className='hit';hb.setAttribute('aria-hidden','true');
+  hb.style.cssText='left:'+(Math.min.apply(0,xs)-pad)+'px;top:'+(Math.min.apply(0,ys)-pad)+'px;width:'+(Math.max.apply(0,xs)-Math.min.apply(0,xs)+pad*2)+'px;height:'+(Math.max.apply(0,ys)-Math.min.apply(0,ys)+pad*2)+'px';
+  hb.addEventListener('click',function(e){e.stopPropagation();openCon(c);});
+  function hot(on){g.classList.toggle('hot',on);lines.querySelectorAll('line[data-con="'+c.id+'"]').forEach(function(l){l.classList.toggle('hot',on)});}
+  [hb,lb].forEach(function(el){el.addEventListener('mouseenter',function(){if(!(state.level&&state.con===c))hot(true)});el.addEventListener('mouseleave',function(){hot(false)});});
+  c.hot=hot;g.insertBefore(hb,g.firstChild);
+  if(c.id==='orion'){var co=document.createElement('div');co.className='coach';var R=200;co.style.cssText='left:'+(808-R)+'px;top:'+(440-R)+'px;width:'+R*2+'px;height:'+R*2+'px';
+    co.innerHTML='<div class="ring2"></div><div class="tag">Click to explore ✦</div>';g.appendChild(co);}
+  world.appendChild(g);
 });
 /* chips = legend */
 var chips=document.getElementById('chips');
@@ -569,7 +607,7 @@ function dust(el,n,max){var h='';for(var i=0;i<n;i++){var s=Math.random()*max+.6
 dust(document.getElementById('dust1'),260,1.6);dust(document.getElementById('dust2'),70,2.6);
 
 /* camera */
-var CB=[180,130,1430,870],TOP=0;
+var CB=[180,130,1430,905],TOP=0;
 function measure(){W=stage.clientWidth;H=stage.clientHeight;
   TOP=W>900?270:250;var avH=H-TOP-(W>900?105:100),avW=W-60;
   Z0=Math.min(avW/(CB[2]-CB[0]),avH/(CB[3]-CB[1]));world.style.setProperty('--z0',Z0);}
@@ -580,7 +618,7 @@ function bbox(c){var xs=c.stars.map(function(s){return s[0]}),ys=c.stars.map(fun
   return[Math.min.apply(0,xs),Math.min.apply(0,ys),Math.max.apply(0,xs),Math.max.apply(0,ys)];}
 
 function setLevel(l){state.level=l;sky.dataset.level=l;}
-function openCon(c){closeScope();state.con=c;setLevel(1);
+function openCon(c){closeScope();state.con=c;setLevel(1);sky.classList.add('used');CONS.forEach(function(o){o.hot&&o.hot(false)});
   CONS.forEach(function(o){o.el.classList.toggle('focus',o===c);});
   [].forEach.call(chips.children,function(b){b.classList.toggle('active',b.dataset.con===c.id);});
   var b=bbox(c),bw=b[2]-b[0]+120,bh=b[3]-b[1]+120,wide=W>900;
