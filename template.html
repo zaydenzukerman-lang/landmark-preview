@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Landmark Entertainment Group — Homepage Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+/* ============ BRAND TOKENS — every colour has a job ============
+   GOLD   = Landmark's light. Only things Landmark built glow gold (stars, windows, CTAs). From the logo.
+   VIOLET = the sky / their original space backdrop. The canvas, never the hero.
+   DUSK   = magenta + coral. The moment the show begins; used for energy and transitions.
+   CREAM  = daylight. The public, park-by-day sections. */
+@property --z{syntax:'<number>';inherits:true;initial-value:1}
+@property --tx{syntax:'<length>';inherits:true;initial-value:0px}
+@property --ty{syntax:'<length>';inherits:true;initial-value:0px}
+:root{
+  --gold:#F2C45A;--gold-deep:#D99A2B;--gold-soft:#FFE3A1;
+  --night:#1D1046;--violet:#2E1760;--plum:#4F236A;--orchid:#924DAE;
+  --magenta:#D9468A;--coral:#F4775C;--sun:#FFC56E;
+  --cream:#FFF7EA;--cream2:#FBEBD2;--ink:#241246;--ink-soft:#5b4a78;
+  --display:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;
+  --body:'DM Sans',system-ui,-apple-system,Segoe UI,sans-serif;
+  --ease:cubic-bezier(.65,0,.25,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-anchor:none}
+body{font-family:var(--body);color:var(--ink);background:var(--cream);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1280px;margin:0 auto;padding-inline:clamp(20px,5vw,64px)}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+h1,h2,h3{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:.92;letter-spacing:.005em}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:999px;font-weight:700;font-size:15px;letter-spacing:.02em;transition:transform .2s,box-shadow .2s,background .2s}
+.btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 8px 30px rgba(242,196,90,.45)}
+.btn-gold:hover{background:var(--gold-soft);box-shadow:0 10px 40px rgba(242,196,90,.65)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.7);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.mock-tag{position:fixed;right:16px;top:96px;z-index:90;background:rgba(29,16,70,.85);color:var(--gold-soft);font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:6px;backdrop-filter:blur(6px)}
+
+/* ============ NAV ============ */
+.nav{position:fixed;inset:0 0 auto 0;z-index:80;transition:background .3s,box-shadow .3s}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:84px}
+.nav img{height:62px;width:auto}
+.nav ul{display:flex;gap:34px;list-style:none;font-weight:500;font-size:15px;color:#fff}
+.nav ul a{opacity:.9;transition:opacity .2s,color .2s}.nav ul a:hover{opacity:1;color:var(--gold)}
+.nav .btn{padding:12px 22px;font-size:14px}
+.nav.solid{background:rgba(29,16,70,.92);backdrop-filter:blur(10px);box-shadow:0 6px 30px rgba(0,0,0,.2)}
+@media (max-width:900px){.nav ul{display:none}.nav img{height:42px}}
+
+/* ============ HERO — dusk ============ */
+.hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;color:#fff;
+  background:linear-gradient(180deg,#1D1046 0%,#3B1C6B 26%,#7E3690 48%,#C9467F 64%,#F4775C 80%,#FFC56E 100%)}
+.hero .stars{position:absolute;inset:0 0 45% 0;pointer-events:none}
+.hero .stars i{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;animation:tw 3s ease-in-out infinite}
+@keyframes tw{50%{opacity:.25}}
+.hero .sunglow{position:absolute;left:50%;bottom:-38vh;width:120vh;height:80vh;transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,226,150,.95),rgba(255,197,110,.55) 45%,rgba(255,197,110,0) 100%)}
+.hero-inner{position:relative;z-index:2;padding-top:clamp(120px,17vh,180px);text-align:center}
+.hero .eyebrow{color:var(--gold-soft)}
+.hero h1{font-size:clamp(52px,7.2vw,124px);margin:22px auto 0;max-width:15ch;text-shadow:0 4px 40px rgba(29,16,70,.35)}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p.lead{font-size:clamp(17px,1.5vw,21px);line-height:1.55;max-width:620px;margin:26px auto 0;color:rgba(255,255,255,.92)}
+.hero .ctas{display:flex;gap:14px;justify-content:center;margin-top:38px;flex-wrap:wrap}
+.skyline{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:auto;aspect-ratio:5/1;min-height:140px;z-index:1}
+.scroll-cue{position:absolute;z-index:3;left:50%;bottom:22px;transform:translateX(-50%);color:#fff;font-size:12px;letter-spacing:.24em;text-transform:uppercase;opacity:.85}
+
+/* ============ YOU'VE BEEN HERE — daylight ============ */
+.been{padding:clamp(80px,11vw,150px) 0;background:var(--cream)}
+.been .head{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:end}
+.been .eyebrow{color:var(--magenta)}
+.been h2{font-size:clamp(46px,6.4vw,96px);margin-top:16px;color:var(--ink)}
+.been h2 span{color:var(--magenta)}
+.been .head p{font-size:19px;line-height:1.65;color:var(--ink-soft);max-width:520px}
+.rides{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:64px}
+.ride{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:3/4;color:#fff;box-shadow:0 20px 50px rgba(36,18,70,.18);transition:transform .35s var(--ease),box-shadow .35s}
+.ride:hover{transform:translateY(-8px);box-shadow:0 30px 70px rgba(36,18,70,.3)}
+.ride img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.ride:hover img{transform:scale(1.06)}
+.ride:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(29,16,70,0) 40%,rgba(29,16,70,.92))}
+.ride .t{position:absolute;left:26px;right:26px;bottom:26px;z-index:1}
+.ride .t small{display:block;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.ride .t h3{font-size:40px;margin-top:10px}
+.ride .t p{font-size:15px;line-height:1.5;margin-top:10px;color:rgba(255,255,255,.85)}
+.ride .badge{position:absolute;z-index:1;top:20px;left:20px;background:var(--gold);color:var(--ink);font-weight:700;font-size:12px;letter-spacing:.1em;padding:7px 12px;border-radius:999px}
+@media (max-width:900px){.been .head{grid-template-columns:1fr}.rides{grid-template-columns:1fr}.ride{aspect-ratio:4/3}}
+
+/*__MAPCSS__*/
+/* ============ NUMBERS — gold band ============ */
+.numbers{background:var(--gold);color:var(--ink);padding:70px 0}
+.numbers .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.numbers b{display:block;font-family:var(--display);font-weight:900;font-size:clamp(56px,6vw,96px);line-height:.9}
+.numbers span{display:block;margin-top:10px;font-size:14px;font-weight:500;line-height:1.45;max-width:230px}
+@media (max-width:800px){.numbers .wrap{grid-template-columns:1fr 1fr}}
+
+/* ============ WHAT'S NEXT — sunrise ============ */
+.next{position:relative;overflow:hidden;padding:clamp(90px,11vw,150px) 0 clamp(120px,14vw,190px);color:#fff;
+  background:linear-gradient(180deg,#2A1360 0%,#6A2E8A 30%,#C9467F 55%,#F4775C 75%,#FFC56E 92%,#FFE3A1 100%)}
+.next .rise{position:absolute;left:50%;bottom:-340px;width:760px;height:760px;margin-left:-380px;border-radius:50%;
+  background:radial-gradient(closest-side,#FFF1C9,#FFD27A 55%,rgba(255,197,110,0) 100%);opacity:.9}
+.next .head{position:relative;text-align:center;max-width:820px;margin:0 auto}
+.next .eyebrow{color:var(--gold-soft)}
+.next h2{font-size:clamp(50px,7vw,110px);margin-top:16px}
+.next .head p{font-size:19px;line-height:1.6;margin-top:18px;color:rgba(255,255,255,.9)}
+.phases{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:80px;align-items:end}
+.phase{background:rgba(255,255,255,.13);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:26px 22px;transition:transform .3s,background .3s}
+.phase:hover{transform:translateY(-6px);background:rgba(255,255,255,.2)}
+.phase:nth-child(1){margin-bottom:0}.phase:nth-child(2){margin-bottom:40px}.phase:nth-child(3){margin-bottom:80px}.phase:nth-child(4){margin-bottom:40px}.phase:nth-child(5){margin-bottom:0}
+.phase svg{width:44px;height:44px;stroke:var(--gold-soft);fill:none;stroke-width:1.6}
+.phase small{display:block;margin-top:18px;font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--gold-soft)}
+.phase h3{font-size:32px;margin-top:8px}
+.phase p{font-size:14px;line-height:1.5;margin-top:10px;color:rgba(255,255,255,.88)}
+.phase.now{background:rgba(242,196,90,.92);color:var(--ink);border-color:var(--gold)}
+.phase.now svg{stroke:var(--ink)}.phase.now small{color:var(--ink)}.phase.now p{color:var(--ink)}
+@media (max-width:1000px){.phases{grid-template-columns:1fr 1fr}.phase{margin-bottom:0!important}}
+@media (max-width:560px){.phases{grid-template-columns:1fr}}
+
+/* ============ PARTNERS — daylight ============ */
+.partners{background:var(--cream);padding:clamp(90px,10vw,140px) 0}
+.partners .eyebrow{color:var(--magenta)}
+.partners h2{font-size:clamp(46px,6vw,92px);margin-top:14px}
+.marquee{margin-top:56px;border-top:1px solid #e8d7b8;border-bottom:1px solid #e8d7b8;overflow:hidden;white-space:nowrap}
+.marquee div{display:inline-flex;gap:60px;padding:28px 0;animation:mq 40s linear infinite}
+.marquee span{font-family:var(--display);font-weight:700;font-size:34px;text-transform:uppercase;color:var(--ink);opacity:.72;letter-spacing:.04em}
+.marquee span:nth-child(odd){color:var(--plum)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.two{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:26px;margin-top:64px}
+.pcard{border-radius:22px;padding:34px;background:#fff;box-shadow:0 14px 40px rgba(36,18,70,.08)}
+.pcard .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--cream2)}
+.pcard .ic svg{width:26px;height:26px;stroke:var(--magenta);fill:none;stroke-width:1.8}
+.pcard h3{font-size:36px;margin-top:22px}
+.pcard p{font-size:16px;line-height:1.6;color:var(--ink-soft);margin-top:12px}
+.pcard ul{list-style:none;margin-top:16px}
+.pcard li{font-size:15px;padding:9px 0;border-top:1px solid #f0e4cf;color:var(--ink)}
+.pcard li b{color:var(--magenta)}
+form.contact{border-radius:22px;padding:34px;background:var(--night);color:#fff}
+form.contact h3{font-size:36px}
+form.contact label{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);margin-top:16px}
+form.contact input,form.contact select,form.contact textarea{width:100%;margin-top:7px;padding:13px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);color:#fff;font:inherit;font-size:16px}
+form.contact select option{color:#000}
+form.contact textarea{min-height:90px;resize:vertical}
+form.contact .btn{margin-top:22px;width:100%;justify-content:center}
+.sent{display:none;margin-top:18px;padding:14px;border-radius:12px;background:rgba(242,196,90,.15);color:var(--gold-soft);font-size:15px}
+@media (max-width:1000px){.two{grid-template-columns:1fr}}
+
+/* ============ FOOTER ============ */
+footer{background:var(--night);color:rgba(255,255,255,.75);padding:70px 0 40px}
+footer .top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
+footer img{height:90px;width:auto}
+footer nav{display:flex;gap:60px;flex-wrap:wrap;font-size:15px}
+footer nav div b{display:block;color:var(--gold);font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+footer nav a{display:block;padding:5px 0}footer nav a:hover{color:#fff}
+footer .fine{margin-top:50px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-size:12px;line-height:1.7;color:rgba(255,255,255,.5)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" aria-label="Landmark Entertainment Group home"><img src="img/logo-white.png" alt="Landmark Entertainment Group, Est. 1980"></a>
+    <ul>
+      <li><a href="#been">Our Rides</a></li>
+      <li><a href="#world-map">Our World</a></li>
+      <li><a href="#next">What's Next</a></li>
+      <li><a href="#partners">Partners</a></li>
+    </ul>
+    <a class="btn btn-gold" href="#partners">Partner with us</a>
+  </div>
+</header>
+
+<!-- HERO: dusk. The skyline is built from shapes of Landmark's own work; its windows glow gold = Landmark's light. -->
+<section class="hero" id="top">
+  <div class="stars" id="heroStars"></div>
+  <div class="sunglow"></div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow">Est. 1980 &nbsp;·&nbsp; Theme Parks &nbsp;·&nbsp; Attractions &nbsp;·&nbsp; Resorts &nbsp;·&nbsp; Live &nbsp;·&nbsp; Museums</div>
+    <h1>We build the places the world <em>remembers.</em></h1>
+    <p class="lead">For 45 years, Landmark has dreamed up the rides, resorts and spectacles millions of people plan their trips around. Now we're building our own.</p>
+    <div class="ctas">
+      <a class="btn btn-gold" href="#world-map">Explore the map <span aria-hidden="true">✦</span></a>
+      <a class="btn btn-ghost" href="#partners">Partner with us</a>
+    </div>
+  </div>
+  <svg class="skyline" viewBox="0 0 1600 320" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A1A63"/><stop offset="1" stop-color="#241246"/></linearGradient></defs>
+    <g fill="url(#sk)" stroke="url(#sk)">
+      <!-- Venetian campanile -->
+      <rect x="168" y="70" width="40" height="230" stroke="none"/><polygon points="162,72 214,72 188,14" stroke="none"/><rect x="164" y="64" width="48" height="10" stroke="none"/>
+      <!-- resort towers -->
+      <rect x="232" y="140" width="96" height="160" stroke="none"/><rect x="338" y="176" width="64" height="124" stroke="none"/>
+      <!-- Caesars-style temple front -->
+      <rect x="432" y="206" width="136" height="94" stroke="none"/><polygon points="424,208 576,208 500,168" stroke="none"/>
+      <!-- spherical theatre (Boulevard World) -->
+      <circle cx="680" cy="186" r="70" stroke="none"/><rect x="668" y="248" width="24" height="52" stroke="none"/>
+      <!-- coaster loop -->
+      <circle cx="838" cy="214" r="54" fill="none" stroke-width="9"/><path d="M720 300 C760 300 780 268 800 262 M876 262 C900 268 930 300 960 300" fill="none" stroke-width="9"/>
+      <!-- ferris wheel -->
+      <circle cx="1052" cy="172" r="96" fill="none" stroke-width="7"/><circle cx="1052" cy="172" r="12" stroke="none"/>
+      <g stroke-width="3"><line x1="1052" y1="76" x2="1052" y2="268"/><line x1="956" y1="172" x2="1148" y2="172"/><line x1="984" y1="104" x2="1120" y2="240"/><line x1="1120" y1="104" x2="984" y2="240"/></g>
+      <path d="M1052 172 L1004 300 M1052 172 L1100 300" stroke-width="8" fill="none"/>
+      <!-- expo pavilion -->
+      <polygon points="1170,300 1262,150 1354,300" stroke="none"/><line x1="1262" y1="150" x2="1262" y2="86" stroke-width="4"/>
+      <!-- castle -->
+      <rect x="1398" y="190" width="150" height="110" stroke="none"/><rect x="1440" y="136" width="66" height="70" stroke="none"/>
+      <polygon points="1392,194 1418,194 1405,146" stroke="none"/><polygon points="1528,194 1554,194 1541,146" stroke="none"/><polygon points="1436,140 1510,140 1473,70" stroke="none"/>
+      <rect x="0" y="296" width="1600" height="24" stroke="none"/>
+    </g>
+    <g id="windows" fill="#F2C45A"></g>
+  </svg>
+</section>
+
+<!-- YOU'VE BEEN HERE: daylight, for the public -->
+<section class="been" id="been">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="eyebrow">You've already been here</div>
+        <h2>You've ridden<br><span>our rides.</span></h2></div>
+      <p>If you've dodged Doc Ock with Spider-Man, braved the drop on Jurassic Park or ducked a T-1000, you've been inside a Landmark. Most people know the rides. Now meet the people who dreamed them up.</p>
+    </div>
+    <div class="rides">
+      <a class="ride" href="#world-map" data-go="spiderman"><img src="img/spidey.webp" alt="Guests in 3D glasses face Spider-Man on the ride"><span class="badge">World's first 3D/4D dark ride</span>
+        <div class="t"><small>Universal · 1999</small><h3>The Amazing Adventures of Spider-Man</h3><p>"The best theme park ride in the world." · Los Angeles Times</p></div></a>
+      <a class="ride" href="#world-map" data-go="jurassic"><img src="img/jp.webp" alt="Concept art for Jurassic Park: The Ride"><span class="badge">#1 at Universal Hollywood for 22 years</span>
+        <div class="t"><small>Universal · 1996 · with Steven Spielberg</small><h3>Jurassic Park: The Ride</h3><p>Shown: Landmark's original concept art.</p></div></a>
+      <a class="ride" href="#world-map" data-go="t2"><img src="img/t2.webp" alt="Terminator 2: 3D"><span class="badge">Directed by James Cameron</span>
+        <div class="t"><small>Universal · 1996</small><h3>Terminator 2: 3D</h3><p>"The absolute best theme park attraction in the United States."</p></div></a>
+    </div>
+  </div>
+</section>
+
+<!--__MAPHTML__-->
+<!-- NUMBERS: gold = Landmark's light -->
+<section class="numbers">
+  <div class="wrap">
+    <div><b>45+</b><span>years designing the world's favourite experiences</span></div>
+    <div><b>$1B+</b><span>Islands of Adventure, Universal Orlando's second park</span></div>
+    <div><b>22</b><span>years Jurassic Park held #1 at Universal Studios Hollywood</span></div>
+    <div><b>17M</b><span>visitors at Riyadh Season 2023, home of Boulevard City &amp; World</span></div>
+  </div>
+</section>
+
+<!-- WHAT'S NEXT: the sunrise. The future is the next dawn. -->
+<section class="next" id="next">
+  <div class="rise"></div>
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">What's next</div>
+      <h2>The next sunrise.</h2>
+      <p>For four decades we built landmarks for the biggest names in entertainment. Next, we build our own: five worlds, one household name.</p>
+    </div>
+    <div class="phases">
+      <div class="phase now"><svg viewBox="0 0 48 48"><circle cx="24" cy="22" r="14"/><path d="M24 8v28M10 22h28M14 12l20 20M34 12L14 32M16 44h16M24 36v8"/></svg><small>PHASE I · NOW</small><h3>Attractions &amp; Theme Parks</h3><p>Owned and operated destinations, built on 45 years of hits.</p></div>
+      <div class="phase"><svg viewBox="0 0 48 48"><path d="M4 30c5 0 5-4 10-4s5 4 10 4 5-4 10-4 5 4 10 4M4 40c5 0 5-4 10-4s5 4 10 4 5-4 10-4 5 4 10 4"/><path d="M12 26V10h10c6 0 8 6 8 10"/></svg><small>PHASE II</small><h3>Water Attractions</h3><p>Waterparks and aquatic worlds, from the team behind the Georgia Aquarium concept.</p></div>
+      <div class="phase"><svg viewBox="0 0 48 48"><path d="M6 18L24 6l18 12M8 18h32M10 22v16M18 22v16M30 22v16M38 22v16M6 42h36"/></svg><small>PHASE III</small><h3>Reinventing Museums</h3><p>Museums that feel like attractions. Immersive and made to visit again and again.</p></div>
+      <div class="phase"><svg viewBox="0 0 48 48"><rect x="6" y="12" width="36" height="24" rx="3"/><path d="M14 42h20M20 36v6M28 36v6M20 20l10 4-10 4z"/></svg><small>PHASE IV</small><h3>Cinemas</h3><p>The movie theatre, rebuilt as a night out you can't get at home.</p></div>
+      <div class="phase"><svg viewBox="0 0 48 48"><path d="M8 42V14l10-6v34M18 42V20h12v22M30 42V12l10 4v26M4 42h40M12 20v2M12 28v2M34 22v2M34 30v2"/></svg><small>PHASE V</small><h3>Resorts</h3><p>Casinos, malls and hotels under one brand, like the Venetian and Caesars we helped create.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS: brands + investors -->
+<section class="partners" id="partners">
+  <div class="wrap">
+    <div class="eyebrow">Partners &amp; investors</div>
+    <h2>The names behind the names.</h2>
+  </div>
+  <div class="marquee" aria-label="Clients and partners"><div id="mq"></div></div>
+  <div class="wrap">
+    <div class="two">
+      <div class="pcard">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 6.9L12 17.8 5.8 21.1l1.3-6.9L2 9.4l7-.9z"/></svg></div>
+        <h3>For brands</h3>
+        <p>We turn IP into places people travel for. Film, music and consumer brands have trusted us for 45 years.</p>
+        <ul><li><b>Universal</b> · Spider-Man, Jurassic Park, T2 3D</li><li><b>The Rolling Stones</b> · Bridges to Babylon tour stage</li><li><b>Samsung</b> · #1 pavilion at Taejon Expo '93</li></ul>
+      </div>
+      <div class="pcard">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 20h18M6 16v-5M11 16V7M16 16v-8M21 4l-6 5-4-3-6 5"/></svg></div>
+        <h3>For investors</h3>
+        <p>A proven creative engine moving from designing destinations to owning them.</p>
+        <ul><li><b>$1.5B</b> · Venetian concept &amp; master plan</li><li><b>$1B+</b> · Islands of Adventure</li><li><b>$800M</b> · Boulevard City + World, Riyadh</li></ul>
+      </div>
+      <form class="contact" id="contact">
+        <h3>Build the next landmark</h3>
+        <label for="f1">Name</label><input id="f1" required autocomplete="name">
+        <label for="f2">Email</label><input id="f2" type="email" required autocomplete="email">
+        <label for="f3">I'm reaching out as</label>
+        <select id="f3"><option>A brand / IP owner</option><option>An investor</option><option>A destination / developer</option><option>Press</option></select>
+        <label for="f4">Tell us your idea</label><textarea id="f4"></textarea>
+        <button class="btn btn-gold" type="submit">Start the conversation ✦</button>
+        <div class="sent" id="sent">Thank you. The Landmark team will be in touch. (Mockup: nothing was sent.)</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <img src="img/logo-gold.png" alt="Landmark Entertainment Group">
+      <nav>
+        <div><b>Worlds</b><a href="#world-map">Theme Parks</a><a href="#world-map">Attractions</a><a href="#world-map">Resorts &amp; Casinos</a><a href="#world-map">Live Entertainment</a></div>
+        <div><b>Company</b><a href="#been">Our Rides</a><a href="#next">What's Next</a><a href="#partners">Partners</a></div>
+      </nav>
+    </div>
+    <div class="fine"><b style="color:#F2C45A">Homepage design mockup, not a live site.</b><br>© 2026 Landmark Entertainment Group. All written, photographic and conceptual art material is the exclusive property of Landmark Entertainment Group.<br>Galaxy Macau, Georgia Aquarium, Haichang Ocean Park and Chimelong Marine Park were done by GGE.</div>
+  </div>
+</footer>
+
+<script>
+/*__MAPJS__*/
+</script>
+</body>
+</html>

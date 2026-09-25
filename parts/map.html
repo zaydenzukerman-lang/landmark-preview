@@ -1,0 +1,43 @@
+<!-- OUR WORLD: 45 years of work on the map. Gold lights = Landmark projects. -->
+<section class="sky" id="world-map" data-level="0" aria-label="Interactive world map of Landmark projects">
+  <div class="layer nebula" id="neb"></div>
+  <div class="layer tint"></div>
+  <div class="layer dust" id="dust1"></div>
+  <div class="layer dust" id="dust2"></div>
+  <div class="stage" id="stage"><div class="world" id="world">
+    <svg class="map" viewBox="0 0 1600 820" width="1600" height="820" aria-hidden="true">
+      <path class="land" d="__LAND__"/>
+      <path class="borders" d="__BORDERS__"/>
+      <g class="spokes" id="spokes"></g>
+    </svg>
+  </div></div>
+
+  <div class="sky-head">
+    <div class="eyebrow">Our World · 1980 → today</div>
+    <h2>Look where we've built.</h2>
+    <p>From the Las Vegas Strip to Riyadh, every gold light is a real Landmark project.</p>
+    <div class="tiprow"><div class="tip"><b></b>Click any gold light to zoom in</div>
+    <div class="legend"><span><i></i>Featured project</span><span><i class="s"></i>Also built here</span></div></div>
+  </div>
+  <div class="year" aria-live="polite"><b id="yr">1980</b><span id="yrl">Landmark is founded</span></div>
+  <div class="why" id="why"><div class="eyebrow" id="whyE"></div><h3 id="whyH"></h3><p id="whyP"></p><div class="tip"><b></b>Tap a gold light to look inside</div></div>
+  <div class="regionhint"><div class="tip"><b></b>Now pick a city</div></div>
+  <div class="crumb" id="crumb"></div>
+  <div class="chips" id="chips" aria-label="Jump to a city"></div>
+  <button class="back" id="back">← <span id="backT">Back to the world</span></button>
+  <div id="hubbtns"></div>
+
+  <div class="scope" id="scope" role="img" aria-label=""></div>
+  <div class="scope-ring" id="ring"></div>
+  <article class="card" id="card" aria-live="polite">
+    <div class="eyebrow"><i></i><span id="cDisc"></span></div>
+    <h3 id="cName"></h3>
+    <div class="facts" id="cFacts"></div>
+    <div class="thumbs" id="cThumbs"></div>
+    <ul id="cList"></ul>
+    <blockquote id="cQuote"></blockquote>
+    <div class="credit" id="cCredit"></div>
+    <div class="nav2"><button id="prev">← Previous</button><button id="nextS">Next in this city →</button></div>
+  </article>
+</section>
+
